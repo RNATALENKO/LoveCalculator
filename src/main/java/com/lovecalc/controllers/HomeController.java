@@ -61,7 +61,6 @@ public class HomeController {
 	}
 	
 	
-	
 	/*long way of passing data to a vew
 	@RequestMapping("/process-homepage")//once you create the object here, the values are set automatically by Spring
 	public String processHome(CalculateLoveInfoDto loveDto, Model model) {

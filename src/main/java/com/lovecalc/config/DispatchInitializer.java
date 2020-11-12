@@ -24,8 +24,6 @@ public class DispatchInitializer implements WebApplicationInitializer {
 		srd.setLoadOnStartup(1);
 		srd.addMapping("/");
 		
-		
-		
 
 	}
 	

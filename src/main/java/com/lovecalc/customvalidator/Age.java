@@ -12,18 +12,21 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 
 
+//validator definition with default ages and message
+
 @Constraint(validatedBy = AgeConstraint.class)
 @Documented
 @Retention(RetentionPolicy.RUNTIME) //class where we find runtime
 @Target(ElementType.FIELD) //enum where we find element types
 public @interface Age {
 	
-	
 	int lower() default 18; 
 	int upper() default 60; 
 	
-	String message() default "age should be between 18 and 115";
+	//load in values you set in Age(lower =, upper = )
+	String message() default "{invalidAgeMessage}";
 	
+	//required methods
 	Class<?>[] groups() default { };
 	Class<? extends Payload>[] payload() default { };
 

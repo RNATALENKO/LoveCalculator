@@ -4,40 +4,45 @@ import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
 
+//business logic for age constraint
+
 public class AgeConstraint implements ConstraintValidator<Age, Integer> {
 	
 	
 	int defaultLower; //18
 	int defaultUpper; //60
 	
-	//non required method to call before everything else is called, takes our annotation
+	//method called first to do initialization work, passes in age object
 	public void initialize(Age age){
 		
-		//do intialization work before validating
+		System.out.println("In constraint initialization");
 		
-		//capture default values
+		//do intialization work before validating
 		this.defaultLower = age.lower(); //get 18
 		this.defaultUpper = age.upper(); //get 60
 		
-		
 	}
 	
-	//required method to write business logic
-	//value is the caputured value user will input
+	//method that returns true or false based on users age
 	@Override
 	public boolean isValid(Integer userAge, ConstraintValidatorContext context) {
 		
-		//write business logic
+		System.out.println("in isValid method");
 		
-		if(userAge == null) {
+		//write business logic
+		//if users age is not given, return false
+		if(	userAge == null) {
+			
 			return false; 
 		}
 		
+		//if user's age less then 18 or age greater then 60 return false
 		if(userAge < defaultLower || userAge > defaultUpper) {
 			return false; //validate failed
 		}
 	
-		return true; //validation passed
+		//otherwise validation passed
+		return true;
 	}
 	
 	

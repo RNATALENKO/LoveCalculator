@@ -16,7 +16,7 @@ public class RegisterDto {
 	private String gender;
 	private String[] hobbies;
 	
-	@Age( message = "You cannot be a child or a senior citizen to use this app")
+	@Age(lower = 15, upper = 65)
 	private Integer age; 
 	
 	private CommunicationDto commDto; 
