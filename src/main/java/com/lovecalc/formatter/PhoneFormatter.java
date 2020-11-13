@@ -26,7 +26,7 @@ public class PhoneFormatter implements Formatter<Phone> {
 	@Override
 	public Phone parse(String completePhoneNumber, Locale locale) throws ParseException {
 		
-		System.out.println("Parse method called...");
+		System.out.println("inside parse method...");
 		
 		//split the string received from user into an array
 		String[] phoneNumberArray = completePhoneNumber.split("-");

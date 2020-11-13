@@ -4,9 +4,12 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -22,6 +25,8 @@ public class RegistrationController {
 	@RequestMapping("/register")
 	public String registrationForm(@ModelAttribute("RegisterDto") RegisterDto registerDto) {
 		
+		System.out.println("inside register method");
+		
 		//retrieve data from the database and display to user 
 		Phone phone = new Phone(); 
 		phone.setCountryCode("55");
@@ -32,7 +37,7 @@ public class RegistrationController {
 		//pretend these came from a database
 		String[] hobbies = {"sports", "eating", "reading"}; 
 		char[] password = {'m', 'y','p','a','s','w','o','r','d'};
-		registerDto.setAge(500);
+		registerDto.setAge(19);
 		registerDto.setGender("female");
 		registerDto.setName("Steve-a-rino");
 		registerDto.setHobbies(hobbies);
@@ -57,6 +62,11 @@ public class RegistrationController {
 	@RequestMapping("/register-process")
 	public String processRegister(@Valid @ModelAttribute("RegisterDto") RegisterDto registerDto, BindingResult result) {
 		
+		System.out.println("inside process register method");
+		
+		System.out.println("name entered by the user is: ");
+		System.out.println(registerDto.getName());
+		
 		if(result.hasErrors()) {
 			
 			//capture all errors
@@ -74,6 +84,28 @@ public class RegistrationController {
 		
 		//save the data to database when user hits submits register dto
 		return "register-process";
+		
+	}
+	
+	
+	//init binder controls data binding to the DTO's of the controller methods
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		System.out.println("inisde init binder method");
+		
+		//disable properties to be binded from every DTO in controller handlers
+		//binder.setDisallowedFields("name"); 
+		
+		
+		/* creating validation check for field before controller executes */
+		//class that trims string if there's whitespace
+		StringTrimmerEditor editor = new StringTrimmerEditor(false); 
+		
+		//register editor with binder
+		//prevents whitespace from binding with the name property
+		//after the trim the @NotEmpty annotation is called
+		binder.registerCustomEditor(String.class,"name", editor); 
+		
 		
 	}
 	

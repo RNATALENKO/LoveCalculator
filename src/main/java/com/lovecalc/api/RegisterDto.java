@@ -2,6 +2,8 @@ package com.lovecalc.api;
 
 import java.util.Arrays;
 
+import javax.validation.constraints.NotEmpty;
+
 import com.lovecalc.customvalidator.Age;
 
 
@@ -9,6 +11,7 @@ import com.lovecalc.customvalidator.Age;
 
 public class RegisterDto {
 	
+	@NotEmpty(message = "name cannot be empty")
 	private String name; 
 	private String username;
 	private char[] password;

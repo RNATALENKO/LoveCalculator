@@ -59,6 +59,7 @@
 		<div>
 			<label for="nameinput">Name:</label>
 			<form:input type="text" id="nameinput" path="name"/>
+			<form:errors class="error" path="name"/>
 		</div>
 		
 		<div>
