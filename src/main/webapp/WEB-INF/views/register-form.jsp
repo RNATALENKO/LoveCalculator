@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@ page isELIgnored="false" %>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 
@@ -61,6 +62,7 @@
 			<form:input type="text" id="nameinput" path="name"/>
 			<form:errors class="error" path="name"/>
 		</div>
+		
 		
 		<div>
 			<label for="usernameinput" >UserName:</label>

@@ -99,7 +99,9 @@ public class RegistrationController {
 		
 		/* creating validation check for field before controller executes */
 		//class that trims string if there's whitespace
-		StringTrimmerEditor editor = new StringTrimmerEditor(false); 
+		//false will remove white space and leave empty string
+		//true will convert whitespace to null if no characters
+		StringTrimmerEditor editor = new StringTrimmerEditor(true); 
 		
 		//register editor with binder
 		//prevents whitespace from binding with the name property

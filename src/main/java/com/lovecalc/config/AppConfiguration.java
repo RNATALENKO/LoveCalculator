@@ -17,6 +17,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.resource.PathResourceResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import com.lovecalc.formatter.CreditCardFormatter;
 import com.lovecalc.formatter.PhoneFormatter;
 
 
@@ -72,6 +73,7 @@ public class AppConfiguration implements WebMvcConfigurer {
 	public void addFormatters(FormatterRegistry registry) {
 	
 		registry.addFormatter(new PhoneFormatter());
+		registry.addFormatter(new CreditCardFormatter());
 	}
 	
 	
