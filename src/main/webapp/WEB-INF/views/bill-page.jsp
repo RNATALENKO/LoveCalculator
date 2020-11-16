@@ -42,30 +42,32 @@
 
 	<!-- model attribute is name of the variable passed into annotation @ModelAttribute("BillDto") otherwise it's 
 	default variable name  -->
-	<form:form id="billform" action="bill-process" method="post" modelAttribute="billDto">
+	<form:form id="billform" action="bill-process" method="post" modelAttribute="BillDto">
 	
 		<div>
 			<label>Card: </label>
 			<form:input type="text" path="creditCard"></form:input>
 		</div>
 		
-		<!-- 
+		
 		<div>
 			<label>Amount:</label>
-			<form:input path="amount"></form:input>
+			<form:input type="number" path="amount"></form:input>
 		</div>
+		
 		
 		<div>
 			<label>currency:</label>
 			<form:input path="currency"></form:input>
 		</div>
 		
+		<!-- 
 		<div>
 			<label>Date:</label>
 			<form:input path="date"></form:input>
 		</div>
+		 -->
 		
-		-->
 		<button>Pay bill</button>
 		
 		 

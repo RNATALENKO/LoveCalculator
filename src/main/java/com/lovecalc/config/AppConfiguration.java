@@ -18,20 +18,22 @@ import org.springframework.web.servlet.resource.PathResourceResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.lovecalc.formatter.CreditCardFormatter;
+import com.lovecalc.formatter.DecimalFormatter;
 import com.lovecalc.formatter.PhoneFormatter;
 
 
 @Configuration
 @ComponentScan(basePackages = "com.lovecalc.controllers")
 @EnableWebMvc
-//webmvc configurer is to add external resources like javascript pages
+
+//reigster property files, create view resolver, register formatters
 public class AppConfiguration implements WebMvcConfigurer {
 	
 	
 	//create view resolver
 	@Bean
 	public InternalResourceViewResolver resolve() {
-		System.out.println("configuring the view resolver...in AppConfig");
+		System.out.println("in app config...in resolve method");
 		InternalResourceViewResolver vr = new InternalResourceViewResolver(); 
 		vr.setPrefix("/WEB-INF/views/");
 		vr.setSuffix(".jsp");
@@ -39,6 +41,7 @@ public class AppConfiguration implements WebMvcConfigurer {
 	}
 	
 	
+	/*externalizing jsp interpolation from a property file*/
 	//register properties file to message source
 	@Bean
 	public MessageSource messageSource() {
@@ -72,13 +75,15 @@ public class AppConfiguration implements WebMvcConfigurer {
 	@Override
 	public void addFormatters(FormatterRegistry registry) {
 	
+		System.out.println("adding formatters...in addFormatters method");
 		registry.addFormatter(new PhoneFormatter());
-		registry.addFormatter(new CreditCardFormatter());
+		registry.addFormatter(new CreditCardFormatter()); 
+		registry.addFormatter(new DecimalFormatter());
 	}
 	
 	
 	
-	//add the resource handlers
+	//add the resource handlers, for external resources/pages
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry.addResourceHandler("/resources/**").addResourceLocations("classpath:/resources/");

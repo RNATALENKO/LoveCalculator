@@ -11,13 +11,13 @@ public class BillController {
 	
 	
 	@RequestMapping("/bill")
-	public String billPage(@ModelAttribute BillDto billDto) {
+	public String billPage(@ModelAttribute("BillDto") BillDto billDto) {
 		
 		return "bill-page";
 	}
 	
 	@RequestMapping("/bill-process")
-	public String billProcessPage(@ModelAttribute BillDto billDto) {
+	public String billProcessPage(@ModelAttribute("BillDto") BillDto billDto) {
 		
 		return "bill-process";
 		

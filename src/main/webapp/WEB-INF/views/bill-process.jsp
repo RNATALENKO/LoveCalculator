@@ -11,7 +11,9 @@
 <body>
 	
 	<!-- name of variable not class name-->
-	<label>Credit Number: ${BillDto.creditCard.toString()}</label>
+	<div>Credit Number: ${BillDto.creditCard}</div>
+	<div> Amount: ${BillDto.amount + BillDto.currency}</div>
+	<div></div>
 
 </body>
 </html>

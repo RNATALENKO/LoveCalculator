@@ -5,14 +5,20 @@ import java.math.BigDecimal;
 import java.util.Currency;
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.NumberFormat;
 import org.springframework.stereotype.Controller;
 
 @Controller
 public class BillDto {
 	
 	private CreditCard creditCard;
+	
+	@NumberFormat(pattern = "#, ###, ###.##")
 	private BigDecimal amount; 
 	private Currency currency; 
+	
+	@DateTimeFormat(pattern="MM/dd/yyyy")
 	private Date date; 
 	private String test; 
 	
@@ -41,9 +47,6 @@ public class BillDto {
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
-	
-	
 	
 	public String getTest() {
 		return test;

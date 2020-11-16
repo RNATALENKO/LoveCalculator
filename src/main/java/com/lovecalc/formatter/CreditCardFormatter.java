@@ -35,6 +35,8 @@ public class CreditCardFormatter implements Formatter<CreditCard> {
 		card.setThirdFour(Integer.valueOf(creditArray[2]));
 		card.setFourthFour(Integer.valueOf(creditArray[3]));
 		
+		//System.out.println("card number is: " + card.toString());
+		
 		return card;
 	}
 
