@@ -12,8 +12,8 @@
 	
 	<!-- name of variable not class name-->
 	<div>Credit Number: ${BillDto.creditCard}</div>
-	<div> Amount: ${BillDto.amount + BillDto.currency}</div>
-	<div></div>
+	<div> Amount:  ${BillDto.amount} ${BillDto.currency}</div>
+	<div>Date: ${BillDto.date} </div>
 
 </body>
 </html>

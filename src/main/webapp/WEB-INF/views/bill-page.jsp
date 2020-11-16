@@ -25,7 +25,7 @@
 			margin-bottom: 30px;
 		}
 		
-		input {
+		input, select{
 			float: right; 
 		}
 	
@@ -58,7 +58,11 @@
 		
 		<div>
 			<label>currency:</label>
-			<form:input path="currency"></form:input>
+			<form:select path="currency">
+				<option value="USD">USD</option>
+				<option value="EUR">EUR</option>
+			</form:select>
+			
 		</div>
 		
 		<!-- 

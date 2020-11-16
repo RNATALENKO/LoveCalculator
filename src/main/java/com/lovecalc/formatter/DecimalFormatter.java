@@ -24,8 +24,8 @@ public class DecimalFormatter implements Formatter<BigDecimal> {
 		
 		BigDecimal amount = new BigDecimal(charArray);
 		
-		//return the type of amount
-		System.out.println(amount instanceof BigDecimal);
+		//print the type of amount
+		//System.out.println(amount instanceof BigDecimal);
 		
 		return amount;
 	}

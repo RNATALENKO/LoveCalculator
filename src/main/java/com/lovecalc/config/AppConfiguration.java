@@ -18,6 +18,8 @@ import org.springframework.web.servlet.resource.PathResourceResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.lovecalc.formatter.CreditCardFormatter;
+import com.lovecalc.formatter.CurrencyFormatter;
+import com.lovecalc.formatter.DateFormatter;
 import com.lovecalc.formatter.DecimalFormatter;
 import com.lovecalc.formatter.PhoneFormatter;
 
@@ -79,6 +81,8 @@ public class AppConfiguration implements WebMvcConfigurer {
 		registry.addFormatter(new PhoneFormatter());
 		registry.addFormatter(new CreditCardFormatter()); 
 		registry.addFormatter(new DecimalFormatter());
+		registry.addFormatter(new CurrencyFormatter());
+		registry.addFormatter(new DateFormatter());
 	}
 	
 	
