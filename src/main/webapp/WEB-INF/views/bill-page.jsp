@@ -28,6 +28,14 @@
 		input, select{
 			float: right; 
 		}
+		
+		.error {
+				color: red;
+				font-size: 14px;
+				margin-left: 10px;
+				position: fixed;
+				text-align: left;
+			}
 	
 	
 	</style>
@@ -65,12 +73,15 @@
 			
 		</div>
 		
-		<!-- 
+		
+		 
 		<div>
 			<label>Date:</label>
 			<form:input path="date"></form:input>
+			<form:errors class="error" path="date"></form:errors>
 		</div>
-		 -->
+		
+		 
 		
 		<button>Pay bill</button>
 		

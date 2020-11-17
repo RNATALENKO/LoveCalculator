@@ -16,12 +16,14 @@ public class DateFormatTest {
 		
 		//simpledateformat allows parseing text to date object and vice versa
 		String dateString = "02/10/1990";
-		
 		SimpleDateFormat simpleFormat = new SimpleDateFormat("dd/MM/yyyy");
 		
 		try {
 			Date currentDate = simpleFormat.parse(dateString);
-			System.out.println(simpleFormat.format(currentDate));
+			String currentDateString = simpleFormat.format(currentDate);
+			System.out.println(currentDateString);
+			System.out.println(dateString);
+			assertTrue(currentDateString.equals(dateString));
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

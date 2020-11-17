@@ -1,6 +1,7 @@
 package com.lovecalc.formatter;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
@@ -17,13 +18,12 @@ public class DateFormatter implements Formatter<Date> {
 	@Override
 	public Date parse(String dateString, Locale locale) throws ParseException {
 		
-		//first split the string based on regex
-		String[] dateArray = dateString.split("/");
+		System.out.println("in date parser...");
 		
+		//create date object based on the string
+		Date date = new SimpleDateFormat("dd/MM/yyyy").parse(dateString);
 		
-		
-		
-		return null;
+		return date;
 	}
 
 }

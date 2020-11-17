@@ -13,13 +13,10 @@ import org.springframework.stereotype.Controller;
 public class BillDto {
 	
 	private CreditCard creditCard;
-	
-	@NumberFormat(pattern = "#, ###, ###.##")
 	private BigDecimal amount; 
 	private Currency currency; 
-	
-	@DateTimeFormat(pattern="MM/dd/yyyy")
 	private Date date; 
+	
 	private String test; 
 	
 	public CreditCard getCreditCard() {

@@ -51,7 +51,6 @@ public class AppConfiguration implements WebMvcConfigurer {
 		//set resource bundle to properties file name
 		ResourceBundleMessageSource ms = new ResourceBundleMessageSource(); 
 		ms.setBasename("messages");
-		
 		return ms;	
 	}
 	
