@@ -60,7 +60,7 @@
 		
 		<div>
 			<label>Amount:</label>
-			<form:input type="number" path="amount"></form:input>
+			<form:input path="amount"></form:input>
 		</div>
 		
 		

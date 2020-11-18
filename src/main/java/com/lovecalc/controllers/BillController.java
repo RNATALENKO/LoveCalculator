@@ -1,11 +1,15 @@
 package com.lovecalc.controllers;
 
+import java.math.BigDecimal;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.beans.propertyeditors.CustomNumberEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
@@ -35,7 +39,7 @@ public class BillController {
 		return "bill-process";
 	}
 	
-	//this binder will convert a new format entered into input, into the Date dto property
+	//binder will do binding work before controllers and before data transferred to Dto's
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
 		
@@ -49,6 +53,11 @@ public class BillController {
 		//register editor with the targeted property
 		binder.registerCustomEditor(Date.class, "date", dateEditor);
 		
+		
+		//custom editor for amount field
+		NumberFormat numFormat = new DecimalFormat("##,###.00");
+		CustomNumberEditor numberEditor = new CustomNumberEditor(BigDecimal.class,numFormat, true); 
+		binder.registerCustomEditor(BigDecimal.class, "amount", numberEditor);
 		
 	}
 	

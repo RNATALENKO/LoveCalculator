@@ -35,6 +35,6 @@ public class CreditCard {
 	@Override
 	public String toString() {
 		
-		return Integer.toString(firstFour) + Integer.toString(secondFour) + Integer.toString(thirdFour) + Integer.toString(fourthFour);
+		return Integer.toString(firstFour) + "-" + Integer.toString(secondFour) + "-" + Integer.toString(thirdFour) + "-" + Integer.toString(fourthFour);
 	}
 }

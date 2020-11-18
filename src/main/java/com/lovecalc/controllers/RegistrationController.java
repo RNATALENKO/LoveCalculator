@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.lovecalc.api.CommunicationDto;
 import com.lovecalc.api.Phone;
 import com.lovecalc.api.RegisterDto;
+import com.lovecalc.customeditors.StringLowerEditor;
 
 @Controller
 public class RegistrationController {
@@ -107,6 +108,13 @@ public class RegistrationController {
 		//prevents whitespace from binding with the name property
 		//after the trim the @NotEmpty annotation is called
 		binder.registerCustomEditor(String.class,"name", editor); 
+		
+		
+		
+		
+		//custom property editor to make name field all lower case before binding to Dto
+		StringLowerEditor lowercaseEditor = new StringLowerEditor();
+		binder.registerCustomEditor(String.class, "name", lowercaseEditor);;
 		
 		
 	}
