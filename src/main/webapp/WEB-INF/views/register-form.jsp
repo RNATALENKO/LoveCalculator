@@ -67,6 +67,8 @@
 		<div>
 			<label for="usernameinput" >UserName:</label>
 			<form:input id="usernameinput" path="username"/>
+			<form:errors class="error" path="username"></form:errors>
+			
 		</div>
 		
 		<div>

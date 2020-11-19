@@ -17,6 +17,7 @@ import com.lovecalc.api.CommunicationDto;
 import com.lovecalc.api.Phone;
 import com.lovecalc.api.RegisterDto;
 import com.lovecalc.customeditors.StringLowerEditor;
+import com.lovecalc.springvalidation.UsernameValidator;
 
 @Controller
 public class RegistrationController {
@@ -114,6 +115,10 @@ public class RegistrationController {
 		StringLowerEditor lowercaseEditor = new StringLowerEditor();
 		binder.registerCustomEditor(String.class, "name", lowercaseEditor);;
 		
+		
+		//register validator
+		UsernameValidator usernameValidator = new UsernameValidator();
+		binder.addValidators(usernameValidator);
 		
 	}
 	
