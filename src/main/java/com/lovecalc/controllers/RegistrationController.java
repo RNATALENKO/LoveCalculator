@@ -110,8 +110,6 @@ public class RegistrationController {
 		binder.registerCustomEditor(String.class,"name", editor); 
 		
 		
-		
-		
 		//custom property editor to make name field all lower case before binding to Dto
 		StringLowerEditor lowercaseEditor = new StringLowerEditor();
 		binder.registerCustomEditor(String.class, "name", lowercaseEditor);;

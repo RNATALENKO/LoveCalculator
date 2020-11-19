@@ -14,7 +14,7 @@ public class CreditCardFormatter implements Formatter<CreditCard> {
 	@Override
 	public String print(CreditCard object, Locale locale) {
 		// TODO Auto-generated method stub
-		return null;
+		return object.toString();
 	}
 
 	//convert string to object

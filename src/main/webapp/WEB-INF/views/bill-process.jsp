@@ -12,7 +12,7 @@
 	
 	<!-- name of variable not class name-->
 	<div>Credit Number: ${BillDto.creditCard}</div>
-	<div> Amount:  ${BillDto.amount} ${BillDto.currency}</div>
+	<div> Amount:  ${BillDto.amount} ${BillDto.currency.getDisplayName()}</div> <!-- can print currency object which is currency code or just get displayname -->
 	<div>Date: ${BillDto.date} </div>
 
 </body>

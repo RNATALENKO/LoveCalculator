@@ -55,21 +55,29 @@
 		<div>
 			<label>Card: </label>
 			<form:input type="text" path="creditCard"></form:input>
+			<form:errors path="creditCard" class="error"></form:errors>
 		</div>
 		
 		
 		<div>
 			<label>Amount:</label>
 			<form:input path="amount"></form:input>
+			<form:errors path="amount" class="error"></form:errors>
 		</div>
 		
 		
 		<div>
 			<label>currency:</label>
+			
+			<form:input path="currency"></form:input>
+			<form:errors path="currency" class="error"></form:errors>
+			<!-- select options
 			<form:select path="currency">
 				<option value="USD">USD</option>
 				<option value="EUR">EUR</option>
 			</form:select>
+			
+			-->
 			
 		</div>
 		
