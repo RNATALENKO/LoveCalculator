@@ -17,6 +17,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.resource.PathResourceResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import com.lovecalc.converters.CreditCardConverter;
+import com.lovecalc.converters.CreditCardConverterPrint;
 import com.lovecalc.formatter.CreditCardFormatter;
 import com.lovecalc.formatter.CurrencyFormatter;
 import com.lovecalc.formatter.DateFormatter;
@@ -82,6 +84,9 @@ public class AppConfiguration implements WebMvcConfigurer {
 		registry.addFormatter(new DecimalFormatter());
 		registry.addFormatter(new CurrencyFormatter());
 		registry.addFormatter(new DateFormatter());
+		
+		registry.addConverter(new CreditCardConverter());
+		registry.addConverter(new CreditCardConverterPrint());
 	}
 	
 	

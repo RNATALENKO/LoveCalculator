@@ -5,6 +5,8 @@ import java.math.BigDecimal;
 import java.util.Currency;
 import java.util.Date;
 
+import javax.validation.constraints.NotBlank;
+
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.NumberFormat;
 import org.springframework.stereotype.Controller;
@@ -12,9 +14,16 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class BillDto {
 	
+	
 	private CreditCard creditCard;
+	
+	
 	private BigDecimal amount; 
+	
+	
 	private Currency currency; 
+	
+	
 	private Date date; 
 	
 	private String test; 

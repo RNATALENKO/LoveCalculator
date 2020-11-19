@@ -78,7 +78,7 @@ public class BillController {
 		
 		//register credit card editor to perform same function as creditcard formatter
 		CreditCardEditor creditcardEditor = new CreditCardEditor();
-		binder.registerCustomEditor(CreditCard.class, "creditCard", creditcardEditor);
+		//binder.registerCustomEditor(CreditCard.class, "creditCard", creditcardEditor);
 		
 	}
 	
