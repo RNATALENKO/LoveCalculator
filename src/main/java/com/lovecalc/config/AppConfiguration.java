@@ -27,7 +27,7 @@ import com.lovecalc.formatter.PhoneFormatter;
 
 
 @Configuration
-@ComponentScan(basePackages = {"com.lovecalc.controllers", "com.lovecalc.springvalidation"})
+@ComponentScan(basePackages = {"com.lovecalc"})
 @EnableWebMvc
 
 //reigster property files, create view resolver, register formatters

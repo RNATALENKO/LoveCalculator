@@ -11,7 +11,7 @@ import com.lovecalc.customvalidator.Age;
 
 public class RegisterDto {
 	
-	@NotEmpty(message = "name cannot be empty")
+	@NotEmpty(message = "{string.notEmpty}")
 	private String name; 
 	private String username;
 	private char[] password;

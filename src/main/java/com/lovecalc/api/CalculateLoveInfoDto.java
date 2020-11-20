@@ -27,8 +27,8 @@ import javax.validation.constraints.Size;
 //object that helps transfer data
 public class CalculateLoveInfoDto {
 	
-	@NotBlank(message = "* your name cannot be blank")
-	@Size(min = 3, max=15, message = "* your name must be between 3 and 15 characters")
+	@NotBlank(message = "{string.notEmpty}")
+	@Size(min = 3, max=15, message = "{string.size}")
 	private String yourName;  //Default values
 	
 	@NotBlank(message = "* your crush name cannot be blank")
