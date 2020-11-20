@@ -54,8 +54,8 @@
 		
 
 	
-
-	<form:form action="register-process" method="GET" modelAttribute="RegisterDto">
+	<!--GET transfer data through URL, POST hides data, so, definitely don't use Get when entering sensitive info-->
+	<form:form action="register-process" method="POST" modelAttribute="RegisterDto">
 		<h1>Registration Form</h1>
 		<div>
 			<label for="nameinput">Name:</label>
@@ -111,6 +111,7 @@
 		<div>
 			<label>Email: </label>
 			<form:input path="commDto.email"/> <!--path of nested dto should be property name of parent class -->
+			<form:errors class="error" path="commDto.email"></form:errors>
 			<br>
 			<label>Phone: </label>
 			<form:input path="commDto.phone"/>

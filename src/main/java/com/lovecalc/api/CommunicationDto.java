@@ -25,6 +25,4 @@ public class CommunicationDto {
 		return "CommunicationDto [email=" + email + ", phone=" + phone + "]";
 	}
 	
-	
-
 }

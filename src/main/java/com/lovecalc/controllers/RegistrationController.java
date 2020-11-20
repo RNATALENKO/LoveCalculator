@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -17,10 +18,14 @@ import com.lovecalc.api.CommunicationDto;
 import com.lovecalc.api.Phone;
 import com.lovecalc.api.RegisterDto;
 import com.lovecalc.customeditors.StringLowerEditor;
+import com.lovecalc.springvalidation.EmailValidator;
 import com.lovecalc.springvalidation.UsernameValidator;
 
 @Controller
 public class RegistrationController {
+	
+	@Autowired
+	private EmailValidator emailValidator;
 	
 	//the Dto object acts as both sending info to the view, 
 	//and getting info from the view to save in the database
@@ -65,9 +70,13 @@ public class RegistrationController {
 	public String processRegister(@Valid @ModelAttribute("RegisterDto") RegisterDto registerDto, BindingResult result) {
 		
 		System.out.println("inside process register method");
-		
 		System.out.println("name entered by the user is: ");
 		System.out.println(registerDto.getName());
+		
+		//manually applying email validator
+		emailValidator.validate(registerDto, result);
+		
+		
 		
 		if(result.hasErrors()) {
 			
@@ -116,11 +125,17 @@ public class RegistrationController {
 		binder.registerCustomEditor(String.class, "name", lowercaseEditor);;
 		
 		
-		//register validator
+		//register username validator
 		UsernameValidator usernameValidator = new UsernameValidator();
 		binder.addValidators(usernameValidator);
+		
+		//register username validator
+		//binder.addValidators(new EmailValidator());
+		
 		
 	}
 	
 
 }
+
+
