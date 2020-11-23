@@ -14,6 +14,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.lovecalc.api.CalculateLoveInfoDto;
 
+
+/*
+ * 
+ *  Some notes
+ *  
+ *  Each page and controller should have it's own Dto that it can pull from
+ * 
+ */
+
+
 @Controller
 public class HomeController {
 	
@@ -22,7 +32,7 @@ public class HomeController {
 		return "home-page";
 	}
 	
-	@RequestMapping("/process-homepage")//once you create the object here, the values are set automatically by Spring
+	@RequestMapping("/results")//once you create the object here, the values are set automatically by Spring
 	public String processHome(@Valid @ModelAttribute("loveDto") CalculateLoveInfoDto loveDto, BindingResult result) {
 		
 		
@@ -57,7 +67,16 @@ public class HomeController {
 		}
 		
 		
-		return "process-homepage";
+		
+		
+		//Service layer: before going to the results page, write logic to calculate love
+		//Then send result to the result page
+		
+		
+		
+		
+		
+		return "results-page"; //replace with results-page, email-page for visual testing
 	}
 	
 	

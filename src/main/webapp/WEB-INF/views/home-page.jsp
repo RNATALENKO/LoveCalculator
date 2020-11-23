@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<%@ page isELIgnored="false" %>
 <script src="/assets/js/test.js"></script>
  
 <meta charset="ISO-8859-1">
@@ -75,7 +76,7 @@
 
 <!-- use the form tag to submit form and move to another page, use action attribute to move the data you set for name="inputs" to another page on server, use method attribute to submit form with get or post  -->
 
-	<form:form id="form" action="process-homepage" method="get" modelAttribute="loveDto" onSubmit="return validForm()">
+	<form:form id="form" action="results" method="get" modelAttribute="loveDto" onSubmit="return validForm()">
 		<div class="form-cont">
 			<div class="form-subcont"> 
 				<label for="yournameinput">Your Name: </label> 
@@ -94,10 +95,7 @@
 				<form:input id="failedTimesInput" path="failedTimes"/> 
 				<form:errors class="error" path="failedTimes"/>
 			</div>
-			<div class="form-subcont">
-				<label>Email (to get results): </label>
-				<form:input path="commDto.email"/>;
-			</div>
+\
 		
 			<div class="form-subcont">
 				<form:checkbox id="agreebox" path="agreement"/>
