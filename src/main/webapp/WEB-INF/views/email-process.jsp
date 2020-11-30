@@ -10,12 +10,9 @@
 <title>Insert title here</title>
 </head>
 <body>
-
 		<div>
-			<h3>Hi ${"UserName"},</h3>
+			<h3>Hi ${yourName},</h3>
 			<label>your email has been successfully to ${emailDto.email} </label>
-
 		</div>
-
 </body>
 </html>

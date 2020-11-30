@@ -5,7 +5,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
-import com.lovecalc.api.EmailDto;
+import com.lovecalc.emailDto.EmailDto;
 
 @Component //don't forget to register the validation as a bean in Spring, otherwise it won't register
 public class EmailResultsValidator implements Validator {

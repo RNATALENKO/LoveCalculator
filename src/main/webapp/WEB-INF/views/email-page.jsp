@@ -1,7 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%> 
- <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
- <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html>
@@ -31,6 +29,7 @@
 			
 </style>
 
+<%@ page isELIgnored="false" %>
 
 </head>
 <body>
@@ -48,15 +47,16 @@
 		<!-- section to display cookies and sessions -->
 		<div>
 
-			<h3>Hi ${"UserName"},</h3>
+			<h3>Hi ${yourName},</h3>
 			<label>type in an email and send the results to your crush:</label>
 
 		</div>
 		<br>
-		<form:form action="emailconfirmation" modelAttribute="emailDto" method="GET" >
+		
+		<!-- action takes in URL, modelAttribute is model attribute name in annotation-->
+		<form:form action="processemail" modelAttribute="emailDto" method="GET" >
 				<div>
 					<form:input id="emailinput" path="email"></form:input>
-					
 					<button> Send </button>
 					<form:errors class="error" path="email"></form:errors>
 				 </div>

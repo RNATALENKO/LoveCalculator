@@ -1,18 +1,21 @@
 package com.lovecalc.controllers;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.lovecalc.api.EmailDto;
+import com.lovecalc.emailDto.EmailDto;
 import com.lovecalc.springvalidation.EmailResultsValidator;
 
 
@@ -26,19 +29,38 @@ import com.lovecalc.springvalidation.EmailResultsValidator;
 
 @Controller
 public class EmailController {
-	
-	@RequestMapping("/sendemail")
+	/*
+	 * Sending Data through URL, avoid this method: 
+	 * @RequestMapping("/sendemail/{yourName}/{hobby}/{anydata") //curly braces mean you can load data in dynamically
+	public String emailPage(@PathVariable Map<String,String> variables, Model model) {
+		
+		
+		//get the user name from map
+		String yourName = variables.get("yourName");
+		
+		//add model attribute
+		model.addAttribute("emailDto", new EmailDto());
+		
+		//send the yourName variable to the email dto
+		model.addAttribute("yourName", username.toUpperCase());
+		
+		return "email-page";
+	}
+	 * 
+	 * 
+	 */
+	@RequestMapping("/sendemail)
 	public String emailPage(@ModelAttribute("emailDto") EmailDto emailDto) {
+
 		
 		return "email-page";
 	}
 	
-	@RequestMapping("/emailconfirmation")
+	@RequestMapping("/processemail")
 	public String processEmail(@Valid @ModelAttribute("emailDto") EmailDto emailDto, BindingResult results) {
 		
 		
 		//need validation that email was sent successfully
-		
 		List<ObjectError> errorList =  results.getAllErrors();
 		
 		if(results.hasErrors()) {

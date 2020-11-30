@@ -39,9 +39,7 @@
 			<div>
 				<label>The Love Calculator predicts: </label>
 			 </div>
-			 
 			 <br>
-			 
 			 <div>
 				<label>${loveDto.yourName} and ${loveDto.crushName} are: </label>
 			 </div>
@@ -49,13 +47,12 @@
 			<div>
 				<label>${"friends"}</label> <!-- output of our service layer-->
 			</div>
-			 
 		 </div>
 
 	
 		<div id="linkcontainer" class="linkcontainer">
 			<div>
-			`	<!--URL for next page-->
+			`	<!--URL link to email page-->
 				<a href="/SpringMVCZLoveCalc/sendemail">send result to email</a> <!-- need application context root, right click > properties >  web project settings -->
 				<!--To get context root dynamically use /${pageCOntext.request.contextPath/myURL}-->
 			</div>

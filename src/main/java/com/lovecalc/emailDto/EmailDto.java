@@ -1,4 +1,4 @@
-package com.lovecalc.api;
+package com.lovecalc.emailDto;
 
 
 
