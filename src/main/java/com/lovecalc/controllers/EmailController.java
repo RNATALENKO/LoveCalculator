@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.lovecalc.emailDto.EmailDto;
 import com.lovecalc.springvalidation.EmailResultsValidator;
 
-
 /*
  * Notes on validation: 
  * 
@@ -26,62 +25,57 @@ import com.lovecalc.springvalidation.EmailResultsValidator;
  * 
  */
 
-
 @Controller
 public class EmailController {
 	/*
-	 * Sending Data through URL, avoid this method: 
-	 * @RequestMapping("/sendemail/{yourName}/{hobby}/{anydata") //curly braces mean you can load data in dynamically
-	public String emailPage(@PathVariable Map<String,String> variables, Model model) {
-		
-		
-		//get the user name from map
-		String yourName = variables.get("yourName");
-		
-		//add model attribute
-		model.addAttribute("emailDto", new EmailDto());
-		
-		//send the yourName variable to the email dto
-		model.addAttribute("yourName", username.toUpperCase());
-		
-		return "email-page";
-	}
+	 * Sending Data through URL, avoid this method:
+	 * 
+	 * @RequestMapping("/sendemail/{yourName}/{hobby}/{anydata") //curly braces mean
+	 * you can load data in dynamically public String emailPage(@PathVariable
+	 * Map<String,String> variables, Model model) {
+	 * 
+	 * 
+	 * //get the user name from map String yourName = variables.get("yourName");
+	 * 
+	 * //add model attribute model.addAttribute("emailDto", new EmailDto());
+	 * 
+	 * //send the yourName variable to the email dto model.addAttribute("yourName",
+	 * username.toUpperCase());
+	 * 
+	 * return "email-page"; }
 	 * 
 	 * 
 	 */
-	@RequestMapping("/sendemail)
+	@RequestMapping("/sendemail")
 	public String emailPage(@ModelAttribute("emailDto") EmailDto emailDto) {
 
-		
 		return "email-page";
 	}
-	
+
 	@RequestMapping("/processemail")
 	public String processEmail(@Valid @ModelAttribute("emailDto") EmailDto emailDto, BindingResult results) {
-		
-		
-		//need validation that email was sent successfully
-		List<ObjectError> errorList =  results.getAllErrors();
-		
-		if(results.hasErrors()) {
-			
-			//print the errors
-			for(ObjectError errors: errorList) {
+
+		// need validation that email was sent successfully
+		List<ObjectError> errorList = results.getAllErrors();
+
+		if (results.hasErrors()) {
+
+			// print the errors
+			for (ObjectError errors : errorList) {
 				System.out.println(errors);
 			}
 			return "email-page";
 		}
-		
+
 		return "email-process";
-		
+
 	}
-	
-	
-	//init binder to validate email address
+
+	// init binder to validate email address
 	@InitBinder
 	public void binder(WebDataBinder binder) {
-			//add the email validator
-			binder.addValidators(new EmailResultsValidator());
+		// add the email validator
+		binder.addValidators(new EmailResultsValidator());
 	}
 
 }

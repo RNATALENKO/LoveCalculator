@@ -2,6 +2,8 @@ package com.lovecalc.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -33,7 +35,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/results")//once you create the object here, the values are set automatically by Spring
-	public String processHome(@Valid @ModelAttribute("loveDto") CalculateLoveInfoDto loveDto, BindingResult result) {
+	public String processHome(@Valid @ModelAttribute("loveDto") CalculateLoveInfoDto loveDto, BindingResult result, HttpServletResponse response) {
 		
 		
 		/*server side validation*/ 
@@ -65,6 +67,12 @@ public class HomeController {
 			System.out.println("Error: user didn't put in a value large enough");
 			return "home-page"; 
 		}
+		
+		
+		//creating cookies, store a string key, and it's value in the cookie
+		Cookie usernameCookie = new Cookie("lovecalc.username", loveDto.getYourName());
+		usernameCookie.setMaxAge(60*60*25); //sets timing of cookie storage in client's computer, 24 hours
+		response.addCookie(usernameCookie);//adds cookie to the response
 		
 		
 		

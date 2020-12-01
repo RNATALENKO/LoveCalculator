@@ -7,7 +7,7 @@
 <html>
 <head>
 <%@ page isELIgnored="false" %>
-<script src="/assets/js/test.js"></script>
+
  
 <meta charset="ISO-8859-1">
 
@@ -160,7 +160,7 @@
 	<script>
 	
 		//failed times client validation
-		if(failedTimesInput.value < 0{
+		if(failedTimesInput.value < 0){
 			alert("Surely, you must have failed more then once...");
 		}
 	
