@@ -3,6 +3,7 @@ package com.lovecalc.controllers;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -53,7 +54,7 @@ public class EmailController {
 	}
 
 	@RequestMapping("/processemail")
-	public String processEmail(@Valid @ModelAttribute("emailDto") EmailDto emailDto, BindingResult results) {
+	public String processEmail(Model model, @Valid @ModelAttribute("emailDto") EmailDto emailDto, BindingResult results, HttpSession session) {
 
 		// need validation that email was sent successfully
 		List<ObjectError> errorList = results.getAllErrors();
@@ -66,6 +67,15 @@ public class EmailController {
 			}
 			return "email-page";
 		}
+		
+		
+		
+		String yourName = (String) session.getAttribute("sessionYourName"); //returns rod john etc..
+		String formalName = "Mr." + yourName; //create the new string
+		session.setAttribute("sessionFormalName", formalName); //set it as a new attribute for the session
+		//or model.addAttribute("formalName", formalName);
+		model.addAttribute("formalName", formalName);
+		session.setMaxInactiveInterval(120);
 
 		return "email-process";
 

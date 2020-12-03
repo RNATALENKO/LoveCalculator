@@ -5,6 +5,7 @@ import java.util.List;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
@@ -39,7 +40,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/results")//once you create the object here, the values are set automatically by Spring
-	public String processHome(@Valid @ModelAttribute("loveDto") CalculateLoveInfoDto loveDto, BindingResult result) {
+	public String processHome(@Valid @ModelAttribute("loveDto") CalculateLoveInfoDto loveDto, BindingResult result, HttpServletRequest request) {
 		
 		
 		/*server side validation*/ 
@@ -75,6 +76,8 @@ public class HomeController {
 		
 	
 		//create a session from httprequest object
+		HttpSession session = request.getSession(true); //get a session if it exists, otherwise create a new one
+		session.setAttribute("sessionYourName", loveDto.getYourName()); //set the data for the session
 		
 		
 		

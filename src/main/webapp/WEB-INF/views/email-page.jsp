@@ -47,7 +47,7 @@
 		<!-- section to display cookies and sessions -->
 		<div>
 
-			<h3>Hi ${yourName},</h3>
+			<h3>Hi ${sessionYourName},</h3>
 			<label>type in an email and send the results to your crush:</label>
 
 		</div>
