@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.lovecalc.emailDto.EmailDto;
 import com.lovecalc.springvalidation.EmailResultsValidator;
@@ -54,7 +55,7 @@ public class EmailController {
 	}
 
 	@RequestMapping("/processemail")
-	public String processEmail(Model model, @Valid @ModelAttribute("emailDto") EmailDto emailDto, BindingResult results, HttpSession session) {
+	public String processEmail(Model model, @Valid @ModelAttribute("emailDto") EmailDto emailDto, BindingResult results) {
 
 		// need validation that email was sent successfully
 		List<ObjectError> errorList = results.getAllErrors();
@@ -69,13 +70,15 @@ public class EmailController {
 		}
 		
 		
-		
+		/* performing business logic onto session data, creating new attributes
+		 * first pass in  HttpSession session argument into method
 		String yourName = (String) session.getAttribute("sessionYourName"); //returns rod john etc..
 		String formalName = "Mr." + yourName; //create the new string
 		session.setAttribute("sessionFormalName", formalName); //set it as a new attribute for the session
 		//or model.addAttribute("formalName", formalName);
 		model.addAttribute("formalName", formalName);
 		session.setMaxInactiveInterval(120);
+		*/
 
 		return "email-process";
 

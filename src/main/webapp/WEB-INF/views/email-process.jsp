@@ -11,7 +11,7 @@
 </head>
 <body>
 		<div>
-			<h3>Hi ${formalName},</h3>
+			<h3>Hi ${otherDto.yourName},</h3>
 			<label>your email has been successfully to ${emailDto.email} </label>
 		</div>
 </body>

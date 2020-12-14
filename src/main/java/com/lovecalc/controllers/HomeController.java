@@ -15,6 +15,7 @@ import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.lovecalc.api.CalculateLoveInfoDto;
 
@@ -29,18 +30,19 @@ import com.lovecalc.api.CalculateLoveInfoDto;
 
 
 @Controller
+
+//pass the @ModelAttribute("name") into the annotation, model data gets stored
+@SessionAttributes({"loveDto", "otherdto", "otherDto"}) 
 public class HomeController {
 	
 	@RequestMapping("/")
-	public String home(@ModelAttribute("loveDto") CalculateLoveInfoDto loveDto) {
-		
-		
-		
+	public String home(/*@ModelAttribute("loveDto") CalculateLoveInfoDto loveDto,*/ Model model) {
+		model.addAttribute("loveDto", new CalculateLoveInfoDto());
 		return "home-page";
 	}
 	
 	@RequestMapping("/results")//once you create the object here, the values are set automatically by Spring
-	public String processHome(@Valid @ModelAttribute("loveDto") CalculateLoveInfoDto loveDto, BindingResult result, HttpServletRequest request) {
+	public String processHome(@Valid @ModelAttribute("loveDto") CalculateLoveInfoDto loveDto, BindingResult result) {
 		
 		
 		/*server side validation*/ 
@@ -75,10 +77,12 @@ public class HomeController {
 		
 		
 	
-		//create a session from httprequest object
+		//create a session from httprequest object, and set the dto data into the session
+		/*
+		 *  to utilize this make sure to pass the http servlet object HttpServletRequest request into method
 		HttpSession session = request.getSession(true); //get a session if it exists, otherwise create a new one
 		session.setAttribute("sessionYourName", loveDto.getYourName()); //set the data for the session
-		
+		*/
 		
 		
 		
