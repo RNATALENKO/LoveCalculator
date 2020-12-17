@@ -1,5 +1,8 @@
 package com.lovecalc.sessionattribute;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,10 +18,14 @@ import org.springframework.web.bind.support.SessionStatus;
 @Controller
 @SessionAttributes({"firstName", "lastName"}) //becomes availble in every model created in request scope
 //data gets automatically added to each model from session, so in your view just call it ${lastName}
-public class ControllerSesh {
+public class ControllerOne {
 	
 	@RequestMapping("/first")
-	public String showPage(Model model) {
+	public String showPage(Model model, HttpServletRequest request) {
+		
+		//create a session on a request of the first page, store address into session
+		HttpSession session = request.getSession(true);
+		session.setAttribute("address", "1234 141st St.Louis");
 		
 		model.addAttribute("firstName", "Rodion");
 		model.addAttribute("lastName", "Natalenko");
@@ -58,7 +65,17 @@ public class ControllerSesh {
 		System.out.println("lastname from third model: " + lastName); 
 		*/
 		
+		model.addAttribute("next", "fourth");
 		
+		return "index";
+		
+	}
+	
+	
+	@RequestMapping("/fourth")
+	public String showPageFour(Model model) {
+		
+		model.addAttribute("next", "fifth");
 		
 		return "index";
 		

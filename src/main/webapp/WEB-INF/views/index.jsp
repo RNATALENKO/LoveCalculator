@@ -17,6 +17,8 @@
 	
 	<p>${lastName}</p>
 	
+	<p>${address}</p>
+	
 	<a href="/SpringMVCZLoveCalc/${next}">Next ${next}</a>
 	
 	<!-- fetch data from request scope model object -->
@@ -25,10 +27,7 @@
 	<!-- fetch data from session scope object -->
 	<p> firstName fetched from session: ${sessionScope.firstName }</p>
 	
-	<script> 
-	
-		alert(${firstName});
-	</script>
+	<p> lastname fetched from request: ${requestScope.lastName}</p>
 
 
 </body>
