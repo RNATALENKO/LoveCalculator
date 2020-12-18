@@ -32,7 +32,9 @@ import com.lovecalc.api.CalculateLoveInfoDto;
 @Controller
 
 //pass the @ModelAttribute("name") into the annotation, model data gets stored
-@SessionAttributes({"loveDto", "otherdto", "otherDto"}) 
+//@SessionAttributes({"loveDto", "otherdto", "otherDto"}) multiple object storage, not sure how to retrieve single index with @SessionAttribute
+@SessionAttributes("loveDto")
+
 public class HomeController {
 	
 	@RequestMapping("/")

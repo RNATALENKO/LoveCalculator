@@ -1,5 +1,7 @@
 package com.lovecalc.config;
 
+import java.util.Properties;
+
 import javax.validation.Validator;
 
 import org.springframework.context.MessageSource;
@@ -9,6 +11,8 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.format.FormatterRegistry;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
@@ -24,13 +28,15 @@ import com.lovecalc.formatter.CurrencyFormatter;
 import com.lovecalc.formatter.DateFormatter;
 import com.lovecalc.formatter.DecimalFormatter;
 import com.lovecalc.formatter.PhoneFormatter;
+import org.springframework.*;
 
 
 @Configuration
 @ComponentScan(basePackages = {"com.lovecalc"})
 @EnableWebMvc
 
-//reigster property files, create view resolver, register formatters
+//beans are used to automatically create objects and set properties, every time the application and server is fired
+//regster property files, create view resolver, register formatters
 public class AppConfiguration implements WebMvcConfigurer {
 	
 	
@@ -88,6 +94,31 @@ public class AppConfiguration implements WebMvcConfigurer {
 		registry.addConverter(new CreditCardConverter());
 		registry.addConverter(new CreditCardConverterPrint());
 	}
+	
+
+	//configuring mail sender object (spring will automatically create this object, set properties, then 
+	@Bean
+	public JavaMailSender getJavaMailSender() {
+		
+		JavaMailSenderImpl senderImpl = new JavaMailSenderImpl();
+		senderImpl.setHost("smtp.gmail.com"); //host details
+		senderImpl.setUsername("rodion.e.natalenko@gmail.com");
+		senderImpl.setPassword("Bricks64"); //your password
+		senderImpl.setPort(587); //gmail email port server is 587
+		
+		//because gmail security is tight, you need to set TLS and SSL properties
+		Properties emailProperties = new Properties();
+		emailProperties.put("mail.smtp.starttls.enable", true); //Enables use of starttls command
+		emailProperties.setProperty("mail.smtp.ssl.trust", "smtp.gmail.com"); //telling SSL to trust the server
+		
+		senderImpl.setJavaMailProperties(emailProperties);
+		
+		return senderImpl; 
+		 
+	}
+	
+	
+	
 	
 	
 	
