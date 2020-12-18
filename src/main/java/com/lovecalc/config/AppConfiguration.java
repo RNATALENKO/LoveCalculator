@@ -102,8 +102,8 @@ public class AppConfiguration implements WebMvcConfigurer {
 		
 		JavaMailSenderImpl senderImpl = new JavaMailSenderImpl();
 		senderImpl.setHost("smtp.gmail.com"); //host details
-		senderImpl.setUsername("rodion.e.natalenko@gmail.com");
-		senderImpl.setPassword("Bricks64"); //your password
+		senderImpl.setUsername("youremail");
+		senderImpl.setPassword("yourpassword"); //your password
 		senderImpl.setPort(587); //gmail email port server is 587
 		
 		//because gmail security is tight, you need to set TLS and SSL properties
