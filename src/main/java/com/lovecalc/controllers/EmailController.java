@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,9 +16,12 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.lovecalc.api.CalculateLoveInfoDto;
 import com.lovecalc.emailDto.EmailDto;
+import com.lovecalc.emailservice.EmailService;
 import com.lovecalc.springvalidation.EmailResultsValidator;
 
 /*
@@ -27,8 +31,14 @@ import com.lovecalc.springvalidation.EmailResultsValidator;
  * 
  */
 
+
 @Controller
 public class EmailController {
+	
+	@Autowired
+	private EmailService emailService; 
+	
+	
 	/*
 	 * Sending Data through URL, avoid this method:
 	 * 
@@ -55,7 +65,7 @@ public class EmailController {
 	}
 
 	@RequestMapping("/processemail")
-	public String processEmail(Model model, @Valid @ModelAttribute("emailDto") EmailDto emailDto, BindingResult results) {
+	public String processEmail(@SessionAttribute("loveDto") CalculateLoveInfoDto loveDto, Model model, @Valid @ModelAttribute("emailDto") EmailDto emailDto, BindingResult results) {
 
 		// need validation that email was sent successfully
 		List<ObjectError> errorList = results.getAllErrors();
@@ -79,6 +89,18 @@ public class EmailController {
 		model.addAttribute("formalName", formalName);
 		session.setMaxInactiveInterval(120);
 		*/
+		
+		
+		
+		
+		
+		/*sending an email with your user info, retrieved from session with @SessionAttribute*/
+		String emailMessage = "Yo, this is an email sent from" + loveDto.getYourName() + "it's just a test, can you reply to it?";
+		emailService.sendEmail(emailDto.getEmail(), emailMessage);
+		
+		
+		
+		
 
 		return "email-process";
 
