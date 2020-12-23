@@ -10,7 +10,7 @@ public interface Email {
 	void sendEmail(String email, String message);
 	
 	//bad for performance
-	void sendEmail(EmailDto emailDto, CalculateLoveInfoDto loveDto);
+	//void sendEmail(EmailDto emailDto, CalculateLoveInfoDto loveDto);
 	
 
 }
