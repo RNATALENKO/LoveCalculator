@@ -1,5 +1,6 @@
 package com.lovecalc.config;
 
+
 import java.util.Properties;
 
 import javax.validation.Validator;
@@ -9,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.PropertySources;
 import org.springframework.context.support.ReloadableResourceBundleMessageSource;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.core.env.Environment;
@@ -33,17 +35,26 @@ import com.lovecalc.formatter.PhoneFormatter;
 import org.springframework.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.logging.*;
+
 
 @Configuration
 @ComponentScan(basePackages = {"com.lovecalc"})
 @EnableWebMvc
 @PropertySource("classpath:emailinfo.properties")
+
+@PropertySources({@PropertySource("classpath:first.properties"),
+	@PropertySource("classpath:second.properties")})
+ 
+
 //beans are used to automatically create objects and set properties, every time the application and server is fired
 //regster property files, create view resolver, register formatters
 public class AppConfiguration implements WebMvcConfigurer {
 	
 	@Autowired
 	private Environment env; 
+	private Logger logger = Logger.getLogger(AppConfiguration.class.getName());
+	
 	
 	
 	//create view resolver
@@ -112,7 +123,11 @@ public class AppConfiguration implements WebMvcConfigurer {
 		senderImpl.setPassword(env.getProperty("email.password")); //your password
 		senderImpl.setPort(getIntProperty("email.port")); //gmail email port server is 587
 		
-		System.out.println("mail sender host: " +  env.getProperty("email.host"));
+		//System.out.println("mail sender host: " +  env.getProperty("email.host"));
+		logger.info(">>>>>>>>>>>>>>>>Fetching host value: " + env.getProperty("email.host"));
+	
+		
+		
 		
 		//because gmail security is tight, you need to set TLS and SSL properties
 		Properties emailProperties = getMailProperties(); //telling SSL to trust the server

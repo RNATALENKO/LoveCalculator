@@ -1,5 +1,6 @@
 package com.lovecalc.controllers;
 
+import java.util.logging.*;
 import java.util.List;
 import java.util.Map;
 
@@ -37,6 +38,8 @@ public class EmailController {
 	
 	@Autowired
 	private EmailService emailService; 
+	
+	private Logger logger = Logger.getLogger(EmailController.class.getName());
 	
 	
 	/*
@@ -96,7 +99,14 @@ public class EmailController {
 		
 		/*sending an email with your user info, retrieved from session with @SessionAttribute*/
 		String emailMessage = "Yo, this is an email sent from" + loveDto.getYourName() + "it's just a test, can you reply to it?";
-		emailService.sendEmail(emailDto.getEmail(), emailMessage);
+		
+		try {
+			//service or database call
+			emailService.sendEmail(emailDto.getEmail(), emailMessage);
+		} catch (Exception e) {
+			logger.info(">>>>>>>>>Exception Thrown: " + e.getMessage());
+		}
+		
 		
 		
 		
