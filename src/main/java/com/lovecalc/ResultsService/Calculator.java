@@ -5,7 +5,8 @@ import java.lang.invoke.VarHandle;
 public interface Calculator {
 	
 
-	void calculate(String yourName, String crushName);
+	String calculate(String yourName, String crushName, int attempts);
+	String returnResult(char luckyLetter);
 
 
 }

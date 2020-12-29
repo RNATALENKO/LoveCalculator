@@ -43,9 +43,10 @@ import java.util.logging.*;
 @EnableWebMvc
 @PropertySource("classpath:emailinfo.properties")
 
+/*
 @PropertySources({@PropertySource("classpath:first.properties"),
 	@PropertySource("classpath:second.properties")})
- 
+ */
 
 //beans are used to automatically create objects and set properties, every time the application and server is fired
 //regster property files, create view resolver, register formatters

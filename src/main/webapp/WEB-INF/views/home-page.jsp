@@ -95,7 +95,6 @@
 				<form:input id="failedTimesInput" path="failedTimes"/> 
 				<form:errors class="error" path="failedTimes"/>
 			</div>
-\
 		
 			<div class="form-subcont">
 				<form:checkbox id="agreebox" path="agreement"/>
@@ -112,7 +111,7 @@
 	
 	<script>
 	
-		
+		/* form validation front side
 		//takes inputs of form, tests if they're non empty, if empty return false
 		function validForm(){
 		
@@ -152,7 +151,7 @@
 		
 		};
 		
-		
+		*/
 		
 	
 	</script>

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -17,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.lovecalc.ResultsService.Calculator;
+import com.lovecalc.ResultsService.ResultsCalculator;
 import com.lovecalc.api.CalculateLoveInfoDto;
 
 
@@ -37,6 +40,12 @@ import com.lovecalc.api.CalculateLoveInfoDto;
 
 public class HomeController {
 	
+	
+	@Autowired
+	private ResultsCalculator calculator; 
+	
+	
+	
 	@RequestMapping("/")
 	public String home(/*@ModelAttribute("loveDto") CalculateLoveInfoDto loveDto,*/ Model model) {
 		model.addAttribute("loveDto", new CalculateLoveInfoDto());
@@ -44,10 +53,11 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/results")//once you create the object here, the values are set automatically by Spring
-	public String processHome(@Valid @ModelAttribute("loveDto") CalculateLoveInfoDto loveDto, BindingResult result) {
+	public String processHome(@Valid @ModelAttribute("loveDto") CalculateLoveInfoDto loveDto, 
+			BindingResult result) {
 		
 		
-		/*server side validation*/ 
+		/*server side validation*/
 		//if form has any errors
 		if(result.hasErrors()) {
 			
@@ -76,7 +86,7 @@ public class HomeController {
 			System.out.println("Error: user didn't put in a value large enough");
 			return "home-page"; 
 		}
-		
+		 
 		
 	
 		//create a session from httprequest object, and set the dto data into the session
@@ -93,7 +103,10 @@ public class HomeController {
 		//Service layer: before going to the results page, write logic to calculate love
 		//Then send result to the result page
 		
-		
+		//get love calculation
+		//set to current model
+		String loveResults = calculator.calculate(loveDto.getYourName(), loveDto.getCrushName(), loveDto.getFailedTimes());
+		loveDto.setResult(loveResults);
 		
 		
 		
@@ -101,7 +114,7 @@ public class HomeController {
 	}
 	
 	
-	/*long way of passing data to a vew
+	/*long way of passing data to a view
 	@RequestMapping("/process-homepage")//once you create the object here, the values are set automatically by Spring
 	public String processHome(CalculateLoveInfoDto loveDto, Model model) {
 		//here we are writing the input data into the DTO object

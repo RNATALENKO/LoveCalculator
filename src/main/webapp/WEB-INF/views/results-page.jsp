@@ -45,7 +45,7 @@
 			 </div>
 			 <br>
 			<div>
-				<label>${"friends"}</label> <!-- output of our service layer-->
+				<label>${loveDto.result}</label> <!-- output of our service layer-->
 			</div>
 		 </div>
 
@@ -54,6 +54,8 @@
 			<div>
 			`	<!--URL link to email page-->
 				<a href="/SpringMVCZLoveCalc/sendemail">send result to email</a> <!-- need application context root, right click > properties >  web project settings -->
+				<a href="<c:url value="/sendemail"/>"/> ENCODED INTO URL</a>
+				
 				<!--To get context root dynamically use /${pageCOntext.request.contextPath/myURL}-->
 			</div>
 			<div>

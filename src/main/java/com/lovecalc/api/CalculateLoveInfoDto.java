@@ -42,6 +42,10 @@ public class CalculateLoveInfoDto {
 	@Min(value = 1, message = "You had to have at least 1 failed attempt to use this calculator")
 	private Integer failedTimes; 
 	
+	private String result; 
+	
+	
+	
 	
 	//write a custom annotation that determines whether the email is valid
 	//your email goes here
@@ -80,6 +84,13 @@ public class CalculateLoveInfoDto {
 	}
 	public void setCommDto(CommunicationDto commDto) {
 		this.commDto = commDto;
+	}
+	
+	public String getResult() {
+		return result;
+	}
+	public void setResult(String result) {
+		this.result = result;
 	}
 	@Override
 	public String toString() {
