@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 @Controller
+//@CA also is derived from @Component, and actually creates the object in Spring Context Container
 @ControllerAdvice(assignableTypes = TestController.class) //model attribute available to one class
 //@ControllerAdvice(basepackages = {"com.lovecalc.controllers", "com.lovecalc.sessionattributes"});
 
